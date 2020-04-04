@@ -1,0 +1,39 @@
+version: '3'
+
+services: 
+  
+  dump1090exporter:
+    container_name: dump1090exporter
+    image: flightawareadsb/dump1090exporter:${DUMP1090_EXPORTER_VERSION}
+    ports:
+      - "9105:9105"
+    restart: always
+    stop_signal: SIGINT
+    command: [
+      "--url=http://${HOST_IP}:8080",
+      "--debug"]
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    depends_on:
+      - dump1090exporter
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-arm32v7-linux:${GRAFANA_VERSION}
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+
