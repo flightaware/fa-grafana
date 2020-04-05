@@ -17,10 +17,10 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ['192.168.28.185:9090']
+      - targets: ['prometheus:9090']
 
   - job_name: dump1090
     scrape_interval: 5s
     scrape_timeout: 5s
     static_configs:
-      - targets: ["192.168.29.185:9105"]
+      - targets: ["dump1090exporter:9105"]
