@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Installing fa-grafana pre-requirements..."
 # install required packages
 requirements=("git pip3 docker-compose docker")
 
@@ -28,5 +29,9 @@ do
 		*)
 		;;
 		esac
+	else
+		echo "$program installed. Proceeding..."
 	fi
 done
+
+echo "Completed."
