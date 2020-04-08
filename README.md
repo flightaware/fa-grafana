@@ -3,7 +3,7 @@ Docker Grafana based metrics for PiAware receivers
 
 This repo contains setup for a Docker application that utilizes Grafana, Prometheus, and a fork of [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter) Docker images to display dump1090-fa metrics for your PiAware device.
 
-For now, this is intended to run on top of an existing PiAware setup and could potentially be included in a future official SD card release.
+**This is currently in development and has only been tested on a Raspberry Pi 3B+ running the PiAware 3.8.1 SD card image.**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
 
@@ -28,7 +28,7 @@ cd fa-grafana
 ### 3. Start up docker containers using docker-compose. This will start Grafana, Prometheus, and dump1090-exporter.
 
 ```
-docker-compose up -d
+sudo docker-compose up -d
 ```
 
 ### 4. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000`
