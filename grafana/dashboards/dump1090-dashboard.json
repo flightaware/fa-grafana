@@ -18,6 +18,22 @@
   "id": 1,
   "links": [],
   "panels": [
+     {
+      "content": "<div class=\"dashboard-header\">\n  <span> <font size=\"6\">FA-Grafana Dashboard</font></span>\n</div>",
+      "datasource": null,
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 32,
+      "mode": "html",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "text"
+    },
     {
       "collapsed": false,
       "datasource": null,

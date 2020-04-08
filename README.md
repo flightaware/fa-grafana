@@ -25,10 +25,17 @@ git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Start up docker containers using docker-compose. This will start Grafana, Prometheus, and dump1090-exporter.
+### 3. Set HOST_IP env variable to your Raspberry Pi's local IP in the .env file
+
+```
+nano .env
+HOST_IP=<set IP address>
+```
+
+### 4. Start up docker containers using docker-compose. This will start Grafana, Prometheus, and dump1090-exporter.
 
 ```
 sudo docker-compose up -d
 ```
 
-### 4. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000`
+### 5. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000`
