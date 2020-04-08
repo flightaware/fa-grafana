@@ -1,6 +1,9 @@
 #!/bin/bash
 
-echo "Installing fa-grafana pre-requirements..."
+# Script to install required programs to run fa-grafana
+
+echo "Installing required programs to set up fa-grafana..."
+
 # install required packages
 requirements=("git pip3 docker-compose docker")
 
@@ -20,10 +23,11 @@ do
 			apt-get install -y python3-pip
 		;;
 		docker-compose)
-			pip3 install docker-compose
+			pip3 install docker-compose > /dev/null
 		;;
 		docker)
-			curl -sSL https://get.docker.com | sh
+			curl -sSL https://get.docker.com | sh > /dev/null
+			echo "Adding pi user to docker group..."
 			usermod -aG docker pi
 		;;
 		*)
@@ -34,4 +38,4 @@ do
 	fi
 done
 
-echo "Completed."
+echo "All necessary programs installed! Clone the fa-grafana directory and start up docker containers using docker-compose."
