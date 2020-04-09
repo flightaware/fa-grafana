@@ -585,7 +585,7 @@
     {
       "aliasColors": {
         "Aircraft with ADS-B Position": "super-light-blue",
-        "Aircraft with MLAT Position": "semi-dark-yellow",
+        "Aircraft with MLAT Position": "super-light-green",
         "Aircraft with no Position": "light-red",
         "Aircraft without Position": "semi-dark-orange",
         "Total Aircraft": "dark-blue"
