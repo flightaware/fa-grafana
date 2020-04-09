@@ -10,7 +10,7 @@ services:
     restart: always
     stop_signal: SIGINT
     command: [
-      "--url=http://${HOST_IP}:8080",
+      "--url=http://${HOST_IP:?IP_ADDRESS_UNSET_ERROR}:8080",
       "--debug"]
 
   prometheus:
