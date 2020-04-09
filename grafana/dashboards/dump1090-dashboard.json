@@ -802,8 +802,7 @@
     {
       "aliasColors": {
         " ": "semi-dark-blue",
-        "Distance": "light-blue",
-        "dump1090_recent_aircraft_max_range{instance=\"localhost:9105\",job=\"dump1090\",time_period=\"latest\"}": "light-blue"
+        "Distance": "light-blue"
       },
       "bars": false,
       "dashLength": 10,
