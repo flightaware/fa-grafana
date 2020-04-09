@@ -25,7 +25,7 @@ git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Set HOST_IP env variable to your Raspberry Pi's local IP in the .env file
+### 3. Edit the .env file and set your Pi's local IP address and a few other config if desired
 
 ```
 nano .env
@@ -38,4 +38,14 @@ HOST_IP=<set IP address>
 sudo docker-compose up -d
 ```
 
-### 5. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000`
+### 5. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000` and select the fa-grafana dashboard in the list of dashboards.
+
+
+## Docker Usage ##
+
+### To stop docker containers, use the following command:
+```
+sudo docker-compose down
+```
+
+### More to come...

@@ -4,7 +4,7 @@ services:
   
   dump1090exporter:
     container_name: dump1090exporter
-    image: flightawareadsb/dump1090exporter:${DUMP1090_EXPORTER_VERSION}
+    image: flightawareadsb/dump1090exporter:1.0
     ports:
       - "9105:9105"
     restart: always
@@ -15,7 +15,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:${PROMETHEUS_VERSION}
+    image: prom/prometheus:v2.17.1
     depends_on:
       - dump1090exporter
     volumes:
@@ -27,7 +27,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana-arm32v7-linux:${GRAFANA_VERSION}
+    image: grafana/grafana-arm32v7-linux:6.7.2
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
@@ -35,10 +35,10 @@ services:
     depends_on:
       - prometheus
     ports:
-      - ${GRAFANA_PORT}:${GRAFANA_PORT}
+      - 3000:3000
+
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=${DISABLE_LOGIN}
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_USERS_DEFAULT_THEME=${GRAFANA_THEME}
-      - GF_SERVER_HTTP_PORT=${GRAFANA_PORT}
