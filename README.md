@@ -6,6 +6,7 @@ This repo contains setup for a Docker application that utilizes Grafana, Prometh
 **This is currently in development and has only been tested on a Raspberry Pi 3B+ running the PiAware 3.8.1 SD card image.**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
+![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs-lightmode.png)
 
 
 ## Setup
@@ -25,7 +26,7 @@ git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Edit the .env file and set your Pi's local IP address and a few other config if desired
+### 3. Edit the .env file and set your Pi's local IP address (required) and a few other default config if desired (i.e. username/password, light/dark mode)
 
 ```
 nano .env
@@ -38,12 +39,16 @@ HOST_IP=<set IP address>
 sudo docker-compose up -d
 ```
 
-### 5. Open Grafana in a web browser at your Pi's local IP port 3000:  `<local_IP>:3000` and select the fa-grafana dashboard in the list of dashboards.
+### 5. Open Grafana in a web browser using your Pi's local IP address on port 3000 (Use the login info set in the .env file above):
+```
+<IP address>:3000
+```
 
+### 6. Select the fa-grafana dashboard in the list of dashboards.
 
 ## Docker Usage ##
 
-### To stop docker containers, use the following command:
+### To stop docker containers, cd into the fa-grafana directory and use the following command:
 ```
 sudo docker-compose down
 ```
