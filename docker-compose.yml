@@ -24,6 +24,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - 9090:9090
+    restart: always
 
   grafana:
     container_name: grafana
@@ -36,7 +37,7 @@ services:
       - prometheus
     ports:
       - 3000:3000
-
+    restart: always
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=${DISABLE_LOGIN}
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
