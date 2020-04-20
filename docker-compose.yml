@@ -36,10 +36,11 @@ services:
     depends_on:
       - prometheus
     ports:
-      - 3000:3000
+      - ${GRAFANA_PORT}:${GRAFANA_PORT}
     restart: always
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=${DISABLE_LOGIN}
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_USERS_DEFAULT_THEME=${GRAFANA_THEME}
+      - GF_SERVER_GRAFANA_PORT=${GRAFANA_PORT}
