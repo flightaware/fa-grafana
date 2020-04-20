@@ -1,5 +1,9 @@
 version: '3'
 
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
 services: 
   
   dump1090exporter:
@@ -20,6 +24,7 @@ services:
       - dump1090exporter
     volumes:
       - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
@@ -33,6 +38,7 @@ services:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
     ports:
