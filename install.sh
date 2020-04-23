@@ -5,7 +5,7 @@
 echo "Installing required programs to set up fa-grafana..."
 
 # install required packages
-requirements=("git pip3 docker-compose docker")
+requirements=("git pip3 docker docker-compose")
 
 apt-get update
 
