@@ -19,7 +19,7 @@
   "links": [],
   "panels": [
      {
-      "content": "<div class=\"dashboard-header\">\n  <span> <font size=\"6\">FA-Grafana Dashboard</font></span>\n</div>",
+      "content": "<div class=\"dashboard-header\">\n  <span> <font size=\"6\">Dump1090-fa Metrics</font></span>\n</div>",
       "datasource": null,
       "gridPos": {
         "h": 2,
@@ -1142,7 +1142,7 @@
     ]
   },
   "timezone": "",
-  "title": "fa-grafana",
+  "title": "Dump1090-fa Dashboard",
   "uid": "dqoDE-gRz",
   "variables": {
     "list": []
