@@ -8,32 +8,34 @@ services:
   
   dump1090exporter:
     container_name: dump1090exporter
-    image: flightawareadsb/dump1090exporter:1.0
+    image: flightawareadsb/dump1090exporter:dev
     ports:
       - "9105:9105"
     restart: always
     stop_signal: SIGINT
     command: [
-      "--url=http://${HOST_IP:?IP_ADDRESS_UNSET_ERROR}:8080",
-      "--debug"]
+      "--resource-path=http://${HOST_IP:?IP_ADDRESS_UNSET_ERROR}:8080/data",
+    ]
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v2.17.1
+    image: prom/prometheus
     depends_on:
       - dump1090exporter
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    command: [
+      "--config.file=/etc/prometheus/prometheus.yml",
+      "--web.listen-address=:9090"
+    ]
     ports:
       - 9090:9090
     restart: always
 
   grafana:
     container_name: grafana
-    image: grafana/grafana-arm32v7-linux:6.7.2
+    image: grafana/grafana:8.4.3-armv7
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
@@ -50,3 +52,18 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_USERS_DEFAULT_THEME=${GRAFANA_THEME}
       - GF_SERVER_GRAFANA_PORT=${GRAFANA_PORT}
+
+  node-exporter:
+    container_name: node_exporter
+    image: quay.io/prometheus/node-exporter:latest
+    command: [
+      "--path.rootfs=/host",
+      "--web.listen-address=:9100",
+    ]
+    # Share same network space as host
+    #network_mode: host
+    ports:
+        - 9100:9100
+    volumes:
+        - "/:/host:ro,rslave"
+    restart: always
