@@ -67,3 +67,10 @@ services:
     volumes:
         - "/:/host:ro,rslave"
     restart: always
+
+  piaware-exporter:
+    container_name: piaware_exporter
+    image: piaware_exporter:1.0
+    ports:
+        - 9101:9101
+    restart: always
