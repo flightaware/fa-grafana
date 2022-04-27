@@ -21,7 +21,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 1,
+    "id": 2,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -46,12 +46,22 @@
             "color": {
               "mode": "thresholds"
             },
-            "mappings": [],
+            "mappings": [
+              {
+                "options": {
+                  "None": {
+                    "index": 0,
+                    "text": "Test"
+                  }
+                },
+                "type": "value"
+              }
+            ],
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "transparent",
                   "value": null
                 }
               ]
@@ -132,6 +142,24 @@
                   }
                 }
               ]
+            },
+            {
+              "matcher": {
+                "id": "byRegexp",
+                "options": ""
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "N/A"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "fixed"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -191,7 +219,7 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "transparent",
                   "value": null
                 }
               ]
@@ -331,12 +359,8 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "transparent",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -439,7 +463,7 @@
             "values": false
           },
           "text": {
-            "valueSize": 47
+            "valueSize": 50
           },
           "textMode": "name"
         },
@@ -475,7 +499,7 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "green",
+                  "color": "transparent",
                   "value": null
                 }
               ]
@@ -1387,9 +1411,9 @@
         "options": {
           "legend": {
             "calcs": [
+              "min",
               "mean",
-              "lastNotNull",
-              "min"
+              "max"
             ],
             "displayMode": "list",
             "placement": "right"
@@ -1511,8 +1535,9 @@
         "options": {
           "legend": {
             "calcs": [
-              "max",
-              "min"
+              "min",
+              "mean",
+              "max"
             ],
             "displayMode": "list",
             "placement": "right"
@@ -1652,6 +1677,8 @@
         "options": {
           "legend": {
             "calcs": [
+              "min",
+              "max",
               "last"
             ],
             "displayMode": "list",
@@ -1696,7 +1723,7 @@
             "exemplar": true,
             "expr": "dump1090_stats_local_noise_level_dbFS{job=\"dump1090\", time_period=\"last1min\"}",
             "interval": "",
-            "legendFormat": "Noise",
+            "legendFormat": "Noise Level",
             "refId": "C"
           }
         ],
@@ -1945,6 +1972,6 @@
     "timezone": "",
     "title": "Flight Tracking Dashboard",
     "uid": "dqoDE-gRz",
-    "version": 4,
+    "version": 2,
     "weekStart": ""
   }
