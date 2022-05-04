@@ -6,7 +6,7 @@ This repo contains setup for a Docker application that utilizes Grafana, Prometh
 **This is currently in development and has only been tested on a Raspberry Pi 3B+ running the PiAware 3.8.1 SD card image.**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
-![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs-lightmode.png)
+![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png.png)
 
 
 ## Setup
