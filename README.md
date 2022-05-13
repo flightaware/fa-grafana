@@ -19,6 +19,9 @@ This is a multi-container Docker application that runs Grafana, Prometheus, and 
  
  <summary>New Installations</summary>
 
+<br />
+These steps will install required dependencies, pull all the Docker images from Docker Hub, and start up the containers
+ 
 #### 1. Install pre-requisite programs:
 
 Convienent script to install git, python3-pip, docker-compose, and docker.
@@ -64,6 +67,9 @@ sudo docker-compose up -d
 <details>
  
  <summary>Updating Existing Installations</summary>
+
+ <br />
+ These steps will stop the running fa-grafana containers, pull the latest images from Docker Hub, clean up volumes, and start up the new containers
 
 #### 1. Stop fa-grafana docker containers
 ```
