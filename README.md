@@ -1,19 +1,24 @@
 # fa-grafana
-Docker Grafana based metrics for PiAware receivers
+Suite of Grafana dashboards for PiAware
 
-This repo contains setup for a Docker application that utilizes Grafana, Prometheus, and a fork of [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter) Docker images to display dump1090-fa metrics for your PiAware device.
+This is a multi-container Docker application that runs Grafana, Prometheus, and Prometheus exporter Docker containers to monitor your PiAware's flight tracking and system health
+- [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter)
+- [piaware_exporter](https://github.com/flightaware/piaware-exporter)
+- [node_exporter](https://github.com/prometheus/node_exporter)
 
-**This is currently in development and has only been tested on a Raspberry Pi 3B+ running the PiAware 3.8.1 SD card image.**
+
+**It is recommended that you run this on a Raspberry Pi 3B+ or better**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
-![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png.png)
+
+![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png)
 
 
 ## Setup
 
 ### 1. Install pre-requisite programs:
 
-The following command will download and run a simple script that handles installation of git, python3-pip, docker-compose, and docker.
+Convienent script to install git, python3-pip, docker-compose, and docker.
 
 ```
 sudo bash -c "$(curl -sS https://raw.githubusercontent.com/flightaware/fa-grafana/master/install.sh)"
@@ -26,31 +31,54 @@ git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Edit the .env file and set your Pi's local IP address (required) and a few other default config if desired (i.e. username/password, light/dark mode)
+### 3. Rename the .env.sample file to .env 
+
+```
+mv .env.sample .env
+```
+
+### 4. Set the HOST_IP to your Pi's local IP address (required) and set other Grafana configuration if desired
 
 ```
 nano .env
 HOST_IP=<set IP address>
 ```
 
-### 4. Start up docker containers using docker-compose. This will start Grafana, Prometheus, and dump1090-exporter.
+### 5. Delete any exisiting fa_grafana docker volumes
+```
+sudo docker-compose volume rm fa-grafana_grafana_data
+```
+
+### 6. Start up containers
 
 ```
 sudo docker-compose up -d
 ```
 
-### 5. Open Grafana in a web browser using your Pi's local IP address on port 3000 (Use the login info set in the .env file above):
+### 7. Open Grafana in a web browser using your Pi's local IP address and Grafana port number
 ```
 <IP address>:3000
 ```
 
-### 6. Select the fa-grafana dashboard in the list of dashboards.
+### 8. fa-grafana dashboards should be present in list of dashboards
 
-## Docker Usage ##
 
-### To stop docker containers, cd into the fa-grafana directory and use the following command:
+
+## Useful docker commands ##
+
+#### To stop all docker containers, cd into the fa-grafana directory and use the following command:
 ```
 sudo docker-compose down
 ```
-
-### More to come...
+#### List all running docker containers
+```
+sudo docker ps
+```
+#### List all docker images installed
+```
+sudo docker images
+```
+#### Delete a docker image
+```
+sudo docker rmi <IMAGE_ID>
+```
