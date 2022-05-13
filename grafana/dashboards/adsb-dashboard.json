@@ -21,7 +21,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 3,
+    "id": 1,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -1578,8 +1578,8 @@
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
-              "fillOpacity": 75,
-              "gradientMode": "hue",
+              "fillOpacity": 0,
+              "gradientMode": "none",
               "hideFrom": {
                 "legend": false,
                 "tooltip": false,
@@ -1595,7 +1595,7 @@
               "spanNulls": true,
               "stacking": {
                 "group": "A",
-                "mode": "normal"
+                "mode": "none"
               },
               "thresholdsStyle": {
                 "mode": "off"
@@ -1617,7 +1617,7 @@
                 }
               ]
             },
-            "unit": "short"
+            "unit": "dB"
           },
           "overrides": [
             {
@@ -1722,7 +1722,9 @@
             },
             "exemplar": true,
             "expr": "dump1090_stats_local_noise_level_dbFS{job=\"dump1090\", time_period=\"last1min\"}",
+            "instant": false,
             "interval": "",
+            "intervalFactor": 1,
             "legendFormat": "Noise Level",
             "refId": "C"
           }
@@ -1952,7 +1954,7 @@
       "list": []
     },
     "time": {
-      "from": "now-1h",
+      "from": "now-3h",
       "to": "now"
     },
     "timepicker": {
