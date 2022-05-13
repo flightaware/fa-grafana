@@ -1,7 +1,7 @@
 # fa-grafana
 Suite of Grafana dashboards for PiAware
 
-This is a multi-container Docker application that runs Grafana, Prometheus, and Prometheus exporter Docker containers to monitor your PiAware's flight tracking and system health
+This is a multi-container Docker application that runs Grafana, Prometheus, and the Prometheus exporter containers below to monitor your PiAware's flight tracking and system health
 - [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter)
 - [piaware_exporter](https://github.com/flightaware/piaware-exporter)
 - [node_exporter](https://github.com/prometheus/node_exporter)
@@ -14,9 +14,12 @@ This is a multi-container Docker application that runs Grafana, Prometheus, and 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png)
 
 
-## Setup
+## Setup ##
+<details>
+ 
+ <summary>New Installations</summary>
 
-### 1. Install pre-requisite programs:
+#### 1. Install pre-requisite programs:
 
 Convienent script to install git, python3-pip, docker-compose, and docker.
 
@@ -24,48 +27,73 @@ Convienent script to install git, python3-pip, docker-compose, and docker.
 sudo bash -c "$(curl -sS https://raw.githubusercontent.com/flightaware/fa-grafana/master/install.sh)"
 ```
 
-### 2. Checkout the fa-grafana git repository and cd into the directory
+#### 2. Checkout the fa-grafana git repository and cd into the directory
 
 ```
 git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Rename the .env.sample file to .env 
+#### 3. Rename the .env.sample file to .env 
 
 ```
 mv .env.sample .env
 ```
 
-### 4. Set the HOST_IP to your Pi's local IP address (required) and set other Grafana configuration if desired
+#### 4. Set the HOST_IP to your Pi's local IP address (required) and set other Grafana configuration if desired
 
 ```
 nano .env
 HOST_IP=<set IP address>
 ```
 
-### 5. Delete any exisiting fa_grafana docker volumes
-```
-sudo docker-compose volume rm fa-grafana_grafana_data
-```
-
-### 6. Start up containers
+#### 5. Start up containers
 
 ```
 sudo docker-compose up -d
 ```
 
-### 7. Open Grafana in a web browser using your Pi's local IP address and Grafana port number
+#### 6. Open Grafana in a web browser by entering your Pi's local IP address and the configured Grafana port number
 ```
 <IP address>:3000
 ```
 
-### 8. fa-grafana dashboards should be present in list of dashboards
+</details>
+ 
+ 
+<details>
+ 
+ <summary>Updating Existing Installations</summary>
 
+#### 1. Stop fa-grafana docker containers
+```
+cd fa-grafana
+sudo docker-compose down
+```
+#### 2. Pull latest source code
+```
+git pull
+```
+#### 3. Make sure the .env file has HOST_IP and other configuration variables set. Rename the provided .env.sample file to .env if needed. <br />
 
+#### 4. Delete existing fa-grafana_grafana_data Docker volume
+```
+sudo docker volume rm fa-grafana_grafana_data
+```
+#### 5. Start up containers
+```
+sudo docker-compose up -d
+```
+  
+  
+</details>
 
-## Useful docker commands ##
-
+## Reference ##
+  
+<details>
+ 
+ <summary>Useful Docker commands</summary>
+  
 #### To stop all docker containers, cd into the fa-grafana directory and use the following command:
 ```
 sudo docker-compose down
@@ -82,3 +110,5 @@ sudo docker images
 ```
 sudo docker rmi <IMAGE_ID>
 ```
+  
+</details>
