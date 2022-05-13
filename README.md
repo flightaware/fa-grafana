@@ -1,56 +1,137 @@
 # fa-grafana
-Docker Grafana based metrics for PiAware receivers
+Suite of Grafana dashboards for PiAware
 
-This repo contains setup for a Docker application that utilizes Grafana, Prometheus, and a fork of [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter) Docker images to display dump1090-fa metrics for your PiAware device.
+This is a multi-container Docker application that runs Grafana, Prometheus, and the Prometheus exporter containers below to monitor your PiAware's flight tracking and system health
+- [Claws's dump1090-exporter](https://github.com/claws/dump1090-exporter)
+- [piaware_exporter](https://github.com/flightaware/piaware-exporter)
+- [node_exporter](https://github.com/prometheus/node_exporter)
 
-**This is currently in development and has only been tested on a Raspberry Pi 3B+ running the PiAware 3.8.1 SD card image.**
+
+**It is recommended that you run this on a Raspberry Pi 3B+ or better**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
-![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png.png)
+
+![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png)
 
 
-## Setup
+## Setup ##
+<details>
+ 
+ <summary>New Installations</summary>
 
-### 1. Install pre-requisite programs:
+<br />
+These steps will install required dependencies, pull all the Docker images from Docker Hub, and start up the containers
+ 
+#### 1. Install pre-requisite programs:
 
-The following command will download and run a simple script that handles installation of git, python3-pip, docker-compose, and docker.
+Convienent script to install git, python3-pip, docker-compose, and docker.
 
 ```
 sudo bash -c "$(curl -sS https://raw.githubusercontent.com/flightaware/fa-grafana/master/install.sh)"
 ```
 
-### 2. Checkout the fa-grafana git repository and cd into the directory
+#### 2. Checkout the fa-grafana git repository and cd into the directory
 
 ```
 git clone https://github.com/flightaware/fa-grafana.git
 cd fa-grafana
 ```
 
-### 3. Edit the .env file and set your Pi's local IP address (required) and a few other default config if desired (i.e. username/password, light/dark mode)
+#### 3. Rename the .env.sample file to .env 
+
+```
+mv .env.sample .env
+```
+
+#### 4. Set the HOST_IP to your Pi's local IP address (required) and set other Grafana configuration if desired
 
 ```
 nano .env
 HOST_IP=<set IP address>
 ```
 
-### 4. Start up docker containers using docker-compose. This will start Grafana, Prometheus, and dump1090-exporter.
+#### 5. Start up containers
 
 ```
 sudo docker-compose up -d
 ```
 
-### 5. Open Grafana in a web browser using your Pi's local IP address on port 3000 (Use the login info set in the .env file above):
+#### 6. Open Grafana in a web browser by entering your Pi's local IP address and the configured Grafana port number
 ```
 <IP address>:3000
 ```
 
-### 6. Select the fa-grafana dashboard in the list of dashboards.
+</details>
+ 
+ 
+<details>
+ 
+ <summary>Updating Existing Installations</summary>
 
-## Docker Usage ##
+ <br />
+ These steps will stop the running fa-grafana containers, pull the latest images from Docker Hub, clean up volumes, and start up the new containers
 
-### To stop docker containers, cd into the fa-grafana directory and use the following command:
+#### 1. Stop fa-grafana docker containers
+```
+cd fa-grafana
+sudo docker-compose down
+```
+#### 2. Pull latest source code
+```
+git pull
+```
+#### 3. Make sure the .env file has HOST_IP and other configuration variables set. Rename the provided .env.sample file to .env if needed. <br />
+
+#### 4. Delete existing fa-grafana_grafana_data Docker volume
+```
+sudo docker volume rm fa-grafana_grafana_data
+```
+#### 5. Start up containers
+```
+sudo docker-compose up -d
+```
+  
+  
+</details>
+
+## Reference ##
+
+</details>
+ 
+<details>
+ <summary>Cleaning up unused Docker images to free up disk space</summary>
+ <br />
+ 
+ ```
+ sudo docker image prune -a
+ ```
+</details>
+ 
+
+<details>
+ 
+ <summary>Useful Docker commands</summary>
+  
+#### To stop all Docker containers, cd into the fa-grafana directory and use the following command:
 ```
 sudo docker-compose down
 ```
+#### List all running Docker containers
+```
+sudo docker ps
+```
+#### List all Docker images installed
+```
+sudo docker images
+```
+#### Delete a Docker image
+```
+sudo docker rmi <IMAGE_ID>
+```
+ 
+#### Delete unused and dangling Docker images
+```
+sudo docker image prune -a
+```
+  
 
-### More to come...
