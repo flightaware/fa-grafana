@@ -95,26 +95,43 @@ sudo docker-compose up -d
 </details>
 
 ## Reference ##
-  
+
+</details>
+ 
+<details>
+ <summary>Cleaning up unused Docker images to free up disk space</summary>
+ <br />
+ 
+ ```
+ sudo docker image prune -a
+ ```
+</details>
+ 
+
 <details>
  
  <summary>Useful Docker commands</summary>
   
-#### To stop all docker containers, cd into the fa-grafana directory and use the following command:
+#### To stop all Docker containers, cd into the fa-grafana directory and use the following command:
 ```
 sudo docker-compose down
 ```
-#### List all running docker containers
+#### List all running Docker containers
 ```
 sudo docker ps
 ```
-#### List all docker images installed
+#### List all Docker images installed
 ```
 sudo docker images
 ```
-#### Delete a docker image
+#### Delete a Docker image
 ```
 sudo docker rmi <IMAGE_ID>
 ```
+ 
+#### Delete unused and dangling Docker images
+```
+sudo docker image prune -a
+```
   
-</details>
+
