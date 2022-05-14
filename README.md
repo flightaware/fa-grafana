@@ -7,12 +7,37 @@ This is a multi-container Docker application that runs Grafana, Prometheus, and 
 - [node_exporter](https://github.com/prometheus/node_exporter)
 
 
-**It is recommended that you run this on a Raspberry Pi 3B+ or better**
+**Only tested on a Raspberry Pi 3B+ and Pi 4. Feel free to report issues with other models.**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png)
 
+## Configuration
+
+You configure the Grafana interface using the .env file shown below. This is what Grafana will use when you start its container.
+
+```
+# This file contains environment variables referenced in the docker-compose.yml
+
+# Set HOST_IP to your Pi's local IP (no quotes)
+HOST_IP=
+
+######## Grafana Settings - configurable settings #########
+
+# enable/disable login
+DISABLE_LOGIN=false
+
+# default Grafana port
+GRAFANA_PORT=3000
+
+# username and password
+GRAFANA_USERNAME=admin
+GRAFANA_PASSWORD=flightaware
+
+# light or dark mode
+GRAFANA_THEME=dark
+```
 
 ## Setup ##
 <details>
