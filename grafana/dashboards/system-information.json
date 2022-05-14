@@ -20,7 +20,7 @@
     },
     "editable": true,
     "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
+    "graphTooltip": 2,
     "id": 1,
     "links": [],
     "liveNow": false,
@@ -114,7 +114,7 @@
               "mode": "absolute",
               "steps": [
                 {
-                  "color": "dark-green",
+                  "color": "green",
                   "value": null
                 }
               ]
@@ -275,8 +275,9 @@
               "type": "prometheus",
               "uid": "P1809F7CD0C75ACF3"
             },
-            "exemplar": true,
+            "exemplar": false,
             "expr": "100 - (node_filesystem_avail_bytes{device=\"/dev/root\", mountpoint=\"/\"}/node_filesystem_size_bytes{device=\"/dev/root\", mountpoint=\"/\"} * 100)",
+            "instant": true,
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -300,7 +301,7 @@
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
-              "fillOpacity": 0,
+              "fillOpacity": 12,
               "gradientMode": "none",
               "hideFrom": {
                 "legend": false,
@@ -339,7 +340,27 @@
             },
             "unit": "decbytes"
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-yellow",
+                    "mode": "fixed"
+                  }
+                },
+                {
+                  "id": "custom.fillOpacity",
+                  "value": 75
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 8,
@@ -352,8 +373,8 @@
           "legend": {
             "calcs": [
               "min",
-              "max",
-              "last"
+              "last",
+              "max"
             ],
             "displayMode": "table",
             "placement": "right"
@@ -478,8 +499,9 @@
               "type": "prometheus",
               "uid": "P1809F7CD0C75ACF3"
             },
-            "exemplar": true,
+            "exemplar": false,
             "expr": "100 - (avg (irate(node_cpu_seconds_total{job=\"node_exporter\",mode=\"idle\"}[5m])) * 100)",
+            "instant": true,
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -531,7 +553,7 @@
             },
             "mappings": [],
             "thresholds": {
-              "mode": "absolute",
+              "mode": "percentage",
               "steps": [
                 {
                   "color": "green",
@@ -558,6 +580,7 @@
           "legend": {
             "calcs": [
               "min",
+              "last",
               "max"
             ],
             "displayMode": "table",
@@ -645,8 +668,9 @@
               "type": "prometheus",
               "uid": "P1809F7CD0C75ACF3"
             },
-            "exemplar": true,
+            "exemplar": false,
             "expr": "max(node_hwmon_temp_celsius{job=\"node_exporter\"})",
+            "instant": true,
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -734,7 +758,7 @@
                   "value": {
                     "legend": false,
                     "tooltip": false,
-                    "viz": true
+                    "viz": false
                   }
                 }
               ]
@@ -752,6 +776,7 @@
           "legend": {
             "calcs": [
               "min",
+              "last",
               "max"
             ],
             "displayMode": "table",
@@ -772,7 +797,7 @@
             "exemplar": true,
             "expr": "max(node_hwmon_temp_celsius{job=\"node_exporter\"})",
             "interval": "",
-            "legendFormat": "CPU Temperature",
+            "legendFormat": "Temperature",
             "refId": "A"
           }
         ],
@@ -846,7 +871,20 @@
             },
             "unit": "decbytes"
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used"
+              },
+              "properties": [
+                {
+                  "id": "custom.fillOpacity",
+                  "value": 75
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -876,6 +914,7 @@
             },
             "exemplar": true,
             "expr": "node_memory_MemTotal_bytes{job=\"node_exporter\"}",
+            "instant": false,
             "interval": "",
             "legendFormat": "Total",
             "refId": "A"
@@ -888,6 +927,7 @@
             "exemplar": true,
             "expr": "node_memory_MemTotal_bytes{job=\"node_exporter\"} - node_memory_MemFree_bytes{job=\"node_exporter\"} - node_memory_Buffers_bytes{job=\"node_exporter\"} - node_memory_Cached_bytes{job=\"node_exporter\"} - node_memory_SReclaimable_bytes{job=\"node_exporter\"}",
             "hide": false,
+            "instant": false,
             "interval": "",
             "legendFormat": "Used",
             "refId": "B"
@@ -900,6 +940,7 @@
             "exemplar": true,
             "expr": "node_memory_MemAvailable_bytes{job=\"node_exporter\"}",
             "hide": false,
+            "instant": false,
             "interval": "",
             "legendFormat": "Available",
             "refId": "C"
@@ -924,6 +965,6 @@
     "timezone": "",
     "title": "Raspberry Pi System Dashboard",
     "uid": "Kt-ERbgRk",
-    "version": 2,
+    "version": 3,
     "weekStart": ""
   }
