@@ -7,7 +7,7 @@ This is a multi-container Docker application that runs Grafana, Prometheus, and 
 - [node_exporter](https://github.com/prometheus/node_exporter)
 
 
-**Only tested on a Raspberry Pi 3B+ and Pi 4. Feel free to report issues with other models.**
+**Only tested on a Raspberry Pi 3B+ and Pi 4. Feel free to report performance on other models.**
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-graphs.png)
 
