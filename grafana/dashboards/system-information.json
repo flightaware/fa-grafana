@@ -896,7 +896,9 @@
         "options": {
           "legend": {
             "calcs": [
-              "last"
+              "min",
+              "last",
+              "max"
             ],
             "displayMode": "table",
             "placement": "right"
