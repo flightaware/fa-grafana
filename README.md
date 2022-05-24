@@ -13,31 +13,6 @@ This is a multi-container Docker application that runs Grafana, Prometheus, and 
 
 ![Image of fa-grafana](https://github.com/flightaware/fa-grafana/blob/master/fa-grafana-system-metrics.png)
 
-## Configuration
-
-You configure the Grafana interface using the .env file shown below. This is what Grafana will use when you start its container.
-
-```
-# This file contains environment variables referenced in the docker-compose.yml
-
-# Set HOST_IP to your Pi's local IP (no quotes)
-HOST_IP=
-
-######## Grafana Settings - configurable settings #########
-
-# enable/disable login
-DISABLE_LOGIN=false
-
-# default Grafana port
-GRAFANA_PORT=3000
-
-# username and password
-GRAFANA_USERNAME=admin
-GRAFANA_PASSWORD=flightaware
-
-# light or dark mode
-GRAFANA_THEME=dark
-```
 
 ## Setup ##
 <details>
@@ -116,9 +91,36 @@ sudo docker volume rm fa-grafana_grafana_data
 sudo docker-compose up -d
 ```
   
-  
+
 </details>
 
+ ## Configuration
+
+You configure the Grafana interface using the .env file shown below. This is what Grafana will use when you start its container.
+
+```
+# This file contains environment variables referenced in the docker-compose.yml
+
+# Set HOST_IP to your Pi's local IP (no quotes)
+HOST_IP=
+
+######## Grafana Settings - configurable settings #########
+
+# enable/disable login
+DISABLE_LOGIN=false
+
+# default Grafana port
+GRAFANA_PORT=3000
+
+# username and password
+GRAFANA_USERNAME=admin
+GRAFANA_PASSWORD=flightaware
+
+# light or dark mode
+GRAFANA_THEME=dark
+```
+ 
+ 
 ## Reference ##
 
 </details>
