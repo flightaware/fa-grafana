@@ -5,7 +5,7 @@
 echo "Installing required programs to set up fa-grafana..."
 
 # install required packages
-requirements=("git pip3 docker docker-compose")
+requirements=("git docker")
 
 apt-get update
 
@@ -19,13 +19,8 @@ do
 		git)
 			apt-get install -y $program
 		;;
-		pip3)
-			apt-get install -y python3-pip
-		;;
-		docker-compose)
-			pip3 install docker-compose > /dev/null
-		;;
 		docker)
+			# Install Docker and Docker Compose
 			curl -sSL https://get.docker.com | sh > /dev/null
 			echo "Adding pi user to docker group..."
 			usermod -aG docker pi

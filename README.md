@@ -28,7 +28,7 @@ These steps will install required dependencies, pull all the Docker images from 
  
 #### 1. Install pre-requisite programs:
 
-Convienent script to install git, python3-pip, docker-compose, and docker.
+Convenient script to install git, docker compose, and docker.
 
 ```
 sudo bash -c "$(curl -sS https://raw.githubusercontent.com/flightaware/fa-grafana/master/install.sh)"
@@ -57,7 +57,7 @@ HOST_IP=<set IP address>
 #### 5. Start up containers
 
 ```
-sudo docker-compose up -d
+sudo docker compose up -d
 ```
 
 #### 6. Open Grafana in a web browser by entering your Pi's local IP address and the configured Grafana port number
@@ -78,7 +78,7 @@ sudo docker-compose up -d
 #### 1. Stop fa-grafana docker containers
 ```
 cd fa-grafana
-sudo docker-compose down
+sudo docker compose down
 ```
 #### 2. Pull latest source code
 ```
@@ -92,7 +92,7 @@ sudo docker volume rm fa-grafana_grafana_data
 ```
 #### 5. Start up containers
 ```
-sudo docker-compose up -d
+sudo docker compose up -d
 ```
   
 
@@ -145,7 +145,7 @@ GRAFANA_THEME=dark
   
 #### To stop all Docker containers, cd into the fa-grafana directory and use the following command:
 ```
-sudo docker-compose down
+sudo docker compose down
 ```
 #### List all running Docker containers
 ```
